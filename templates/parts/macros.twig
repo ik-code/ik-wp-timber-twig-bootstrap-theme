@@ -1,0 +1,7 @@
+{% macro header( image, message ) %}
+<div class="container" >
+    <div class=" py-5" style="background-image: url({{ image }}); background-size: cover;">
+        <h2 class="text-center text-with text-white">{{ message }}</h2>
+    </div>
+</div>
+{% endmacro %}
