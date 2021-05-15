@@ -1,0 +1,24 @@
+    <div class="row py-3 border-bottom {{ post.breaking ? 'alert alert-dismissible alert-warning p-0' }}">
+        <div class="{{ post.breaking ? 'col-sm-3' : 'col-sm-2' }}">
+            <img src="{{ theme.link }}/images/news/{{ post.slug }}.jpg" alt="{{ post.title }}" width="100%" />
+        </div>
+        <div class="{{ post.breaking ? 'col-sm-9' : 'col-sm-10' }}">
+            <h5  class="my-3">
+                <a href="{{ post.link }}">
+                    {% if post.breaking %}
+                    <span class="badge bg-danger">Breaking News!</span><hr>
+                    {% endif %}                    
+                    {{ post.title }}
+                </a>
+            </h5>
+
+            {{ include ("parts/terms.twig", { list: post.terms('category'), label: 'Category' }) }}
+            {{ include ("parts/terms.twig", { list: post.terms('post_tag'), label: 'Tags' }) }}
+            {{ include ("parts/terms.twig", { list: post.terms('sponsor'), label: 'Sponsor' }) }}
+
+            <div class="my-3">
+                {{ post.breaking ? post.content|excerpt(100) : post.content|excerpt(50) }}
+                <a href="{{ post.link }}" class="badge bg-secondary">Read more</a>
+            </div>
+        </div>
+    </div>
