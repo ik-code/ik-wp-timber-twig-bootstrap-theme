@@ -2,6 +2,7 @@ vendor/
 wp-content/
 raw/
 node_modules/
+images/
 
 *.log
 *.sql

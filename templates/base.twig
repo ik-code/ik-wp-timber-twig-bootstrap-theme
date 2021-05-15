@@ -11,10 +11,12 @@
 
     {% include "parts/nav.twig" %}
 
-    {% block content %}
-        Empty!
-    {% endblock %}
-
+    <div class="container my-3">
+        {% block content %}
+            Empty!
+        {% endblock %}
+    </div>
+ 
     <script src="{{ theme.link }}/js/jquery.min.js" crossorigin="anonymous"></script>
     <script src="{{ theme.link }}/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     {{ function('wp_footer') }}
