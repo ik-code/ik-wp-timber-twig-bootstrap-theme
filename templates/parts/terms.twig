@@ -1,0 +1,8 @@
+{% if  list  %}
+<span class="badge bg-primary">
+   {{ label }}:
+</span>
+{% for item in  list  %}
+    <a href="{{ item.link }}" ><span class="badge bg-light">{{ item.name }}</span></a>
+{% endfor %}
+{% endif %}
