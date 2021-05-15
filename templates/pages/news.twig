@@ -4,12 +4,13 @@
 
     {% for post in posts %}
 
+
     <div class="row py-3 border-bottom">
-        <div class="col-2">
-            <img src="{{ theme.link }}/images/news/{{ post.slug }}.jpg" alt="{{ post.title }}" width="100%" class="" />
+        <div class="col-sm-2">
+            <img src="{{ theme.link }}/images/news/{{ post.slug }}.jpg" alt="{{ post.title }}" width="100%" />
         </div>
-        <div class="col-10">
-            <h5>
+        <div class="col-sm-10">
+            <h5  class="my-3">
                 <a href="{{ post.link }}">{{ post.title }}</a>
             </h5>
 
@@ -17,7 +18,7 @@
             {{ include ("parts/terms.twig", { list: post.terms('post_tag'), label: 'Tags' }) }}
             {{ include ("parts/terms.twig", { list: post.terms('sponsor'), label: 'Sponsor' }) }}
 
-            <div class="mt-2">
+            <div class="my-3">
                 {{ post.content|excerpt(50) }}
                 <a href="{{ post.link }}" class="badge bg-secondary">Read more</a>
             </div>
@@ -25,5 +26,11 @@
     </div>
 
     {% endfor %}
+
+    <div class="row">
+        <div class="bs-component">
+            {% include "parts/pagination.twig" %}
+        </div>
+    </div>
 
 {% endblock %}

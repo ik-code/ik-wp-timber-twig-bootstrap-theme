@@ -21,14 +21,21 @@
  * @since    Timber 0.1
  */
 
+global $paged;
+if (!isset($paged) || !$paged){
+    $paged = 1;
+}
+
 $context = Timber::context();
 
 $query = array(
     'post_type' => 'post',
-    'orderby' => 'ID',
+    'orderby' => 'date',
     'order' => 'DESC',
-    'posts_per_page' => '12'
+    'posts_per_page' => '15',
+    'paged' => $paged
 );
+
 $context['posts'] = new Timber\PostQuery($query);
 
 $timber_post     = new Timber\Post();
