@@ -21,25 +21,14 @@
  * @since    Timber 0.1
  */
 
-global $paged;
-if (!isset($paged) || !$paged){
-    $paged = 1;
-}
-
 $context = Timber::context();
 
 $query = array(
-    'post_type' => 'post',
-    'orderby' => 'date',
-    'order' => 'DESC',
+    'post_type' => 'person',
     'posts_per_page' => '10',
-    'paged' => $paged
 );
 
-$context['posts'] = new Timber\PostQuery($query);
-
-$context['categories'] = get_terms(array( 'taxonomy' => 'category' ));
-$context['tags'] = get_terms(array( 'taxonomy' => 'post_tag' ));
+$context['people'] = new Timber\PostQuery($query);
 
 $timber_post     = new Timber\Post();
 $context['post'] = $timber_post;
