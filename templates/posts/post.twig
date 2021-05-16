@@ -1,11 +1,10 @@
 {% extends "base.twig" %}
 
 {% block subheader %}
+    {{ block('subheader', 'pages/news.twig') }}
     {% if post.breaking %}
-
-    {% from "parts/macros.twig" import header %}
-    {{ header( theme.link ~ '/images/breaking_news.jpg', 'Breaking News!') }}
-
+        {% from "parts/macros.twig" import header %}
+        {{ header( theme.link ~ '/images/breaking_news.jpg', 'Breaking News!') }}
     {% endif %}
 {% endblock %}
 
@@ -31,7 +30,7 @@
 
         <div>
             <img src="{{ theme.link }}/images/news/{{ post.slug }}.jpg" alt="{{ post.title }}"
-            class="ms-sm-3 float-sm-end img-fluid" />
+                class="ms-sm-3 float-sm-end img-fluid" />
             <div class="">
                 {{ post.content }}
             </div>

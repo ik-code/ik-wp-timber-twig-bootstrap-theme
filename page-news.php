@@ -38,6 +38,9 @@ $query = array(
 
 $context['posts'] = new Timber\PostQuery($query);
 
+$context['categories'] = get_terms(array( 'taxonomy' => 'category' ));
+$context['tags'] = get_terms(array( 'taxonomy' => 'post_tag' ));
+
 $timber_post     = new Timber\Post();
 $context['post'] = $timber_post;
 Timber::render( array( 'pages/' . $timber_post->post_name . '.twig', 'page.twig' ), $context );
