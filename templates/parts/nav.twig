@@ -33,8 +33,8 @@
                     {% endfor %}
 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="text" placeholder="Search">
+                <form class="d-flex" method="GET" action="{{ site.link }}">
+                    <input name="s" class="form-control me-sm-2" type="text" placeholder="Search">
                     <button class="btn btn-secondary my-sm-0" type="submit">Search</button>
                 </form>
             </div>
