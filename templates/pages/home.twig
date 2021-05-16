@@ -1,0 +1,73 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="row">
+
+        {% set featured_list = [] %}
+        {# left column #}
+        <div class="col-md-8">
+            {# Top story #}
+            {% if post.meta('top_story') %}
+                {% set top = post.meta('top_story')  %}
+                <div class="row pt-2">
+                    <div class="col-md-6 col-12">
+                        <img class="img-fluid" src="{{ theme.link }}/images/news/{{ top.slug }}.jpg" alt="{{ top.title }}">
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="my-3 mt-md-0">
+                            <a href="{{ top.link }}">{{ top.title }}</a>
+                        </h4>
+                        {{ top.content|excerpt(95) }}
+                        <a href="{{ top.link }}">Read more</a>
+                    </div>
+                </div>
+
+                {% set featured_list = featured_list|merge([top.id]) %}
+
+            {% endif %}
+            {# Featured news #}
+            {% if post.meta('featured_news') %}
+            <div class="row mb-3">
+                {% for news in post.meta('featured_news') %}
+
+                <div class="col-md-3 col-12">
+                    <img class="img-fluid my-4" src="{{ theme.link }}/images/news/{{ news.slug }}.jpg" alt="{{ top.title }}">
+                    <h6>
+                        <a href="{{ news.link }}" >{{ news.title }}</a>
+                    </h6>
+                </div>
+
+                {% set featured_list = featured_list|merge([news.id]) %}
+                
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {# Promouted People #}
+            <hr>
+            <div class="row my-3 ">
+                {% for person in promoted_people.posts({ posts_per_page: 3, orderby: 'rand' }) %}
+                    <div class="col-sm-4 d-flex">
+                        <div class="card bg-secondary mb-3  align-self-stretch" >
+                            <div class="card bg-success text-white border-light">
+                                <img src="{{ person.thumbnail.src('full')}}" alt="" class="card-img-top">
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">{{ person.title }}</h5>
+                              <a href="{{ person.link }}">Visit profile</a>
+                              <p class="card-text">{{ person.content|excerpt(8) }}</p>
+                            </div>
+                          </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {# right column #}
+        <div class="col-md-4"> 
+            {{ include("parts/latest-news.twig", { label: 'Events', color: 'primary',  term: events }) }}
+            {{ include("parts/latest-news.twig", { label: 'Sport', color: 'warning',  term: sport }) }}
+            {{ include("parts/latest-news.twig", { label: 'Animals', color: 'success',  term: animals }) }}
+            {{ include("parts/latest-news.twig", { label: 'Architecture', color: 'info',  term: architecture }) }}
+         </div>
+    </div>
+{% endblock %}
