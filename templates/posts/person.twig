@@ -1,0 +1,46 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="row">
+    <div class=" col-sm-4 col-lg-3 text-center">
+        <img class="img-fluid mb-3" src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }}" />
+
+    </div>  
+    <div class="col-sm-8 col-lg-9">
+        <h2 class="pb-4 text-secondary">
+            {{ post.title }}
+         </h2>
+            {% if user.can('read') %}
+                <hr>
+                <cite class="mt-4">
+                    {{ post.content }}
+                </cite>
+                <hr>
+                {% if post.meta('favorite_places') %}
+                <h5>Favorite places:</h5>
+                    {% for place in post.meta('favorite_places') %}
+                        <span class="badge bg-primary"> {{ place }}</span>
+                    {% endfor %}
+                {% endif %}
+                {% else %}
+                    <h6>'You must be logged to see this!'</h6>
+        {% endif %}
+    </div>
+</div>
+<div class="row d-flex justify-content-center flex-wrap">
+    <h5 class="text-center">See also:</h5>
+    <hr>
+    {% for person in people %}
+        {% if person.id != post.id %}
+        <div class="col-md-2 col-6 text-center mb-4">
+            <img class="img-fluid mb-3" src="{{ person.thumbnail.src('thumbnail') }}" alt="{{ person.title }}" />
+            <h6 class="text-center">
+                <a href="{{ person.link }}">{{ person.title }}</a>
+            </h6>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+
+{% endblock %}
