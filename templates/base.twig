@@ -1,26 +1,55 @@
 <!doctype html>
 <html {{ site.language_attributes }}>
-  <head>
-    <meta charset="{{ site.charset }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{{ theme.link }}/style.css">
-    <link rel="stylesheet" href="{{ theme.link }}/css/bootstrap.min.css" crossorigin="anonymous">
-    {{ function('wp_head') }}
-  </head>
-  <body>
 
-    {% include "parts/nav.twig" %}
+<head>
+  <meta charset="{{ site.charset }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{ theme.link }}/style.css">
+  <link rel="stylesheet" href="{{ theme.link }}/css/bootstrap.min.css" crossorigin="anonymous">
+  {{ function('wp_head') }}
+</head>
 
-    {% block subheader %}{% endblock %}
+<body>
 
-    <div class="container my-3">
-        {% block content %}
-            Empty!
-        {% endblock %}
+  {% include "parts/nav.twig" %}
+
+  {% block subheader %}{% endblock %}
+
+  <div class="container my-3">
+    {% block content %}
+    Empty!
+    {% endblock %}
+  </div>
+
+  <footer id="footer" class="">
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="list-unstyled my-3">
+
+            <li class="float-end"><a  class="" href="#top">Back to top</a></li>
+
+            {% for item in secondary_menu.get_items %}
+            <li>
+              <a target="_blank" class="{{ item.current ? 'active' }}" href="{{ item.url }}">{{ item.title }}</a>
+            </li>
+            {% endfor %}
+
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center mb-3">
+          <a class="nav-link" target="_blank" href="https://sitepro4web.com/">IHOR KHALETSKYI &#169; {{ 'now'|date('Y') }}</a>
+        </div>
+      </div>
     </div>
- 
-    <script src="{{ theme.link }}/js/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="{{ theme.link }}/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    {{ function('wp_footer') }}
-  </body>
+  </footer>
+
+  <script src="{{ theme.link }}/js/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="{{ theme.link }}/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  {{ function('wp_footer') }}
+</body>
+
 </html>
