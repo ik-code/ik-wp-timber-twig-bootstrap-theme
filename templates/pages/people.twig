@@ -9,7 +9,7 @@
 
 <div class="row">
     {% for person in people %}
-        <div class=" col-sm-4 col-lg-3 text-center mt-5">
+        <div class=" col-sm-4 col-lg-3 text-center mt-3">
             <img class="img-fluid mb-3" src="{{ person.thumbnail.src }}" alt="{{ person.title }}" />
             <h6 class="pt-2 text-secondary">
                 <a href="{{ person.link }}">{{ person.name }}</a>
@@ -18,8 +18,6 @@
             <div class="text-start">
                 {{ person.content|excerpt(8) }}
             </div>
-
-
         </div>  
     {% endfor %}
 </div>
