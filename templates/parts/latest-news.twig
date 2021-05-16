@@ -15,7 +15,7 @@
         </div>
         {% for news in attribute(term, 'posts', [5 + featured_counter]) %}
         {% if news.id not in featured_list %}
-            <h6><a  href="{{ news.link }}">{{ news.title|excerpt(4) }}</a></h6>
+            <h6><a  href="{{ news.link }}">{{ news.title|excerpt(4)|e('html')  }}</a></h6>
         {% endif %}
 
         {% endfor %}

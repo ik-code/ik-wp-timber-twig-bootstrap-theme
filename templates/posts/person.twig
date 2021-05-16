@@ -3,12 +3,12 @@
 {% block content %}
 <div class="row">
     <div class=" col-sm-4 col-lg-3 text-center">
-        <img class="img-fluid mb-3" src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }}" />
+        <img class="img-fluid mb-3" src="{{ post.thumbnail.src('large') }}" alt="{{ post.title|e('html') }}" />
 
     </div>  
     <div class="col-sm-8 col-lg-9">
         <h2 class="pb-4 text-secondary">
-            {{ post.title }}
+            {{ post.title|e('html')  }}
          </h2>
             {% if user.can('read') %}
                 <hr>
@@ -33,13 +33,38 @@
     {% for person in people %}
         {% if person.id != post.id %}
         <div class="col-md-2 col-6 text-center mb-4">
-            <img class="img-fluid mb-3" src="{{ person.thumbnail.src('thumbnail') }}" alt="{{ person.title }}" />
+            <img class="img-fluid mb-3" src="{{ person.thumbnail.src('thumbnail') }}" alt="{{ person.title|e('html') }}" />
             <h6 class="text-center">
-                <a href="{{ person.link }}">{{ person.title }}</a>
+                <a href="{{ person.link }}">{{ person.title|e('html')  }}</a>
             </h6>
         </div>
         {% endif %}
     {% endfor %}
+</div>
+
+<div class="container">
+    <div class="row">
+    <table class="table table-hover">
+     
+
+        {% from "parts/macros.twig" import table_header, table_row %}
+        {% set table = post.meta('table_col') %}
+        {% set options = post.meta('table_options') %}
+
+        {# Talbe header #}
+        {{ table_header(table, options ) }}
+
+        {# Table row #}
+        <tbody>
+            {% for article in post.meta('articles') %}
+              {{ table_row(table, article, category_labels ) }}
+            {% endfor %}
+
+        {# Table footer #}
+        </tbody>
+        </table>
+
+    </div>
 </div>
 
 

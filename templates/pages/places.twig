@@ -12,17 +12,17 @@
 
     <div class="row mb-4">
         <div class="col-md-4 col-12">
-            <img src="{{ place.thumbnail.src('large') }}" class="img-fluid w-100" alt="{{ place.title }}" />
+            <img src="{{ place.thumbnail.src('large') }}" class="img-fluid w-100" alt="{{ place.title|e('html')  }}" />
         </div>
         <div class="col-md-8 col-12">
-            <h3 class="my-3 my-md-0 mb-md-3">{{ place.title }}</h3>
+            <h3 class="my-3 my-md-0 mb-md-3">{{ place.title|e('html') }}</h3>
             {{ place.content }}
 
             <div class="mt-3">
               {% for person in people %}
                 {% if place.title in person.meta('favorite_places') %}
                   <a href="{{ person.link }}">
-                    <img class="mb-2" src="{{ person.thumbnail.src('thumbnail')|resize('70') }}" alt="{{ person.title }}" />
+                    <img class="mb-2" src="{{ person.thumbnail.src('thumbnail')|resize('70') }}" alt="{{ person.title|e('html') }}" />
                   </a>
                 {% endif %}
               {% endfor %}

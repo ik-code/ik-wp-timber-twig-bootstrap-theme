@@ -14,7 +14,7 @@
     <div class="col">
         <div>
             <h1 class="my-3">
-                {{ post.title }}
+                {{ post.title|e('html') }}
             </h1>
             <span class="badge bg-light mb-3">
                 by, {{ post.author.display_name }}, {{ post.date }}
@@ -29,7 +29,7 @@
         </div>
 
         <div>
-            <img src="{{ theme.link }}/images/news/{{ post.slug }}.jpg" alt="{{ post.title }}"
+            <img src="{{ theme.link }}/images/news/{{ post.slug }}.jpg" alt="{{ post.title|e('html')  }}"
                 class="ms-sm-3 float-sm-end img-fluid" />
             <div class="">
                 {{ post.content }}
