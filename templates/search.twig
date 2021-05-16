@@ -1,0 +1,14 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<h3>Search results for: 
+    <span class="badge bg-warning">{{ search }}</span>
+</h3>
+{% for post in posts %}
+{% include "parts/news-teaser.twig" %}
+{% endfor %}
+
+{% include "parts/pagination.twig" %}
+
+{% endblock %}

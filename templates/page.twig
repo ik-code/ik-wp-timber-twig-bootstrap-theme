@@ -1,0 +1,9 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Hello from page.twig {{ post.title|e('html')  }}</h1>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% if posts.pagination.pages %}
+
+    <ul class="pagination pagination-sm py-3 d-flex flex-wrap justify-content-center">
+
+        
+    <!-- Previous -->
+    {% if posts.pagination.prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{ posts.pagination.prev.link }}">&larr;Previous</a>
+        </li>
+        {% else %} 
+        <li class="page-item disabled">
+            <span class="page-link">&larr;Previous</span>
+        </li>
+    {% endif %}
+
+    <!-- Pages -->
+    {% for page in posts.pagination.pages %}
+
+        {% if page.current %}
+            <li class="page-item mx-1 active">
+                <span class="page-link">{{ page.title }}</span>
+            </li>
+            {% elseif page.class == 'dots' %}
+            <li class="page-item mx-1 disabled">
+                <span class="page-link">{{ page.title }}</span>
+            </li>
+            {% else %}
+            <li class="page-item mx-1">
+                <a class="page-link" href="{{ page.link }}">{{ page.title }}</a>
+            </li>
+        {% endif %}
+
+    {% endfor %}
+
+    <!-- Next -->
+    {% if posts.pagination.next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ posts.pagination.next.link }}">Next&rarr;</a>
+        </li>
+        {% else %} 
+        <li class="page-item disabled">
+            <span class="page-link">Next&rarr;</span>
+        </li>
+    {% endif %}
+
+    </ul>
+
+{% endif %}

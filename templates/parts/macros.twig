@@ -1,0 +1,52 @@
+{% macro header( image, message ) %}
+<div class="container" >
+    <div class=" py-5" style="background-image: url({{ image }}); background-size: cover;">
+        <h2 class="text-center text-with text-white">{{ message }}</h2>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro table_header( table , table_options) %}
+
+<thead>
+    <tr class="table {% for class in table_options %} table-{{ class }}{% endfor %}">
+        {% for col in table %}
+            <th scope="col" class="text-center"><h4>{{ col.name }}</h4></th>
+        {% endfor %}
+    </tr>
+  </thead>    
+{% endmacro %}
+
+{% macro table_row(table, article, colors) %}
+<tr>
+
+    {% for col in table %}
+
+    {% if col.name|lower =='title' %}
+        <th scope="row"><a href="{{ artitcle.link }}">{{ attribute(article, col.name) }}</a></th>
+    {% elseif col.name|lower == 'content' %}
+        <th scope="row">{{ attribute(article, col.name)|excerpt(10) }}</th>
+        {% elseif col.name|lower == 'tags' %}
+        <th scope="row">{{ attribute(article, col.name)|join(', ') }}</th>
+        {% elseif col.name|lower == 'category' %}
+        {% set cat = attribute(article, col.name) %}
+        <th scope="row"><span class="badge bg-{{ _self.cat_colors(cat, colors )|trim }}">{{ attribute(article, col.name) }}</span></th>
+    {% else %}
+        <th scope="row">{{ attribute(article, col.name) }}</th>
+    {% endif %} 
+        
+
+    {% endfor %}
+</tr>
+{% endmacro %}
+
+
+{% macro cat_colors(cat, colors) %}
+
+    {% for key, value in colors %}
+        {% if key == cat %}
+            {{ value }}
+        {% endif %}
+    {% endfor %}
+
+{% endmacro %}

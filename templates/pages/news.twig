@@ -1,0 +1,47 @@
+{% extends "base.twig" %}
+
+{% block subheader %}
+<div class="container">
+    <div class="alert alert-dismissible alert-warning">
+        <div class="row">
+            <div class="col-sm-4">
+                {% for cat in categories %}
+
+                    {% if cat.name == current.name or cat.name in post.terms('categories') %}
+                    <a role="button" href="/category/{{ cat.slug }}"
+                        class="btn btn-outline-primary px-1 py-0 my-2 btn-sm active">{{ cat.name }} <span class="badge bg-light">{{ current.count }}</span></a>
+                    {% else %}
+                    <a role="button" href="/category/{{ cat.slug }}"
+                        class="btn btn-outline-primary px-1 py-0 my-2 btn-sm">{{ cat.name }}</a>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+            <div class="col-sm-8">
+                {% for tag in tags %}
+
+                    {% if tag.name == current.name  or tag.name in post.terms('post_tag')  %}
+                    <a role="button" href="/tag/{{ tag.slug }}"
+                        class="btn btn-outline-secondary px-1 py-0 my-2 btn-sm active">{{ tag.name }}<span class="ms-1 badge bg-primary">{{ current.count }}</span></a>
+                    {% else %}
+                    <a role="button" href="/tag/{{ tag.slug }}"
+                        class="btn btn-outline-secondary px-1 py-0 my-2 btn-sm">{{ tag.name }}</a>
+                    {% endif %}
+                    
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+{% include "parts/news-teaser.twig" %}
+{% endfor %}
+<div class="row">
+    <div class="bs-component">
+        {% include "parts/pagination.twig" %}
+    </div>
+</div>
+{% endblock %}

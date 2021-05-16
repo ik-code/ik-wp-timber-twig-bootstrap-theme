@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block subheader %}
+
+    {{ block('subheader', 'pages/news.twig') }}
+
+{% endblock %}
+
+{% block content %}
+
+    {% for post in posts %}
+
+    {% include "parts/news-teaser.twig" %}
+
+    {% endfor %}
+    
+    <div class="row">
+        <div class="bs-component">
+            {% include "parts/pagination.twig" %}
+        </div>
+    </div>
+
+{% endblock %}
