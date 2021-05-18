@@ -1,0 +1,17 @@
+{% extends "posts/post.twig" %}
+
+{% block nav %}
+
+{{  include ("parts/nav.twig", { ad: true, sponsor: 'ABC Corp.'} )  }}
+ 
+{% endblock %}
+
+{% block advertisment %}
+    <div class="card mb-3 bg-warning text-white">
+        <div class="card-body">
+            <h4 class="card-title">Why ABC corp. is great?</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, eius. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat voluptatem maiores hic cumque consequatur illum.</p>
+            <button type="button" class="btn btn-primary btn-sm float-end">Learn more</button>
+        </div>
+    </div>
+{% endblock %}

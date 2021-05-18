@@ -1,5 +1,5 @@
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<div class="container ">
+    <nav class="navbar navbar-expand-lg navbar-dark {{ ad ? 'bg-success' : 'bg-primary' }}">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{  site.link }}">{{ site.name }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
@@ -13,7 +13,7 @@
                     {% for item in menu.get_items %}
 
                     {% if item.children %}
-                    <li class="nav-item dropdown  w-100">
+                    <li class="nav-item dropdown m-0 me-md-2">
                         <a class="nav-link dropdown-toggle  {{ item.current_item_ancestor ? 'active' }}"
                             data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                             aria-expanded="false">{{ item.title|e('html')  }}</a>
@@ -31,6 +31,13 @@
                     {% endif %}
 
                     {% endfor %}
+
+                    {% if ad %}
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">Sponsored by {{ sponsor }}</a>
+                    </li>
+                    
+                    {% endif %}
 
                 </ul>
                 <form class="d-flex" method="GET" action="{{ site.link }}">
