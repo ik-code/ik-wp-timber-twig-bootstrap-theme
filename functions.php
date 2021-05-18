@@ -86,7 +86,6 @@ class StarterSite extends Timber\Site {
 		$context['notes'] = 'These values are available everytime you call Timber::context();';
 		$context['menu']  = new Timber\Menu(16);
 		$context['secondary_menu'] = new Timber\Menu(19);
-		$context['art']  = 200;
 		$context['site'] = $this;
 		$context['category_labels'] = array(
 			'events' => 'primary',
@@ -94,6 +93,7 @@ class StarterSite extends Timber\Site {
 			'sport' => 'warning',
 			'architecture'=>'info'
 		);
+		$context['theme_options'] = get_fields('options');
 		return $context;
 	}
 
@@ -173,3 +173,10 @@ class StarterSite extends Timber\Site {
 }
 
 new StarterSite();
+
+//ACF Options
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page();
+	
+}

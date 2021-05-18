@@ -6,7 +6,7 @@
             <h5  class="my-3">
                 <a href="{{ post.link }}">
                     {% if post.breaking %}
-                    <span class="badge bg-danger">Breaking News!</span><hr>
+                    <span class="badge bg-danger">{{ theme_options.breaking_label }}</span><hr>
                     {% endif %}                    
                     {{ post.title|e('html')  }}
                 </a>

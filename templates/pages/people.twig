@@ -10,7 +10,11 @@
 <div class="row">
     {% for person in people %}
         <div class=" col-sm-4 col-lg-3 text-center mt-3">
-            <img class="img-fluid mb-3" src="{{ person.thumbnail.src }}" alt="{{ person.title|e('html')  }}" />
+            {% if person.thumbnail.src %}
+            <img class="img-fluid mb-3" src="{{ person.thumbnail.src }}" alt="{{ post.title|e('html') }}" />
+            {% else %}
+            <img class="img-fluid mb-3" src="{{ Image( theme_options.defaul_user_image ).src('large') }}" alt="{{ post.title|e('html') }}" />
+            {% endif %}
             <h6 class="pt-2 text-secondary">
                 <a href="{{ person.link }}">{{ person.name }}</a>
             </h6>
