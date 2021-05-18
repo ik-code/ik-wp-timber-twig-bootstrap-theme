@@ -4,7 +4,7 @@
     {{ block('subheader', 'pages/news.twig') }}
     {% if post.breaking %}
         {% from "parts/macros.twig" import header %}
-        {{ header( theme.link ~ '/images/breaking_news.jpg', 'Breaking News!') }}
+        {{ header( theme.link ~ '/images/breaking_news.jpg', theme_options.breaking_label ) }}
     {% endif %}
 {% endblock %}
 
@@ -21,7 +21,7 @@
             </span>
 
             {% set word_count = post.content|split(' ')|length %}
-            {% set reading_time = (word_count / art)|round(0,'ceil') %}
+            {% set reading_time = (word_count / theme_options.average_reading_time )|round(0,'ceil') %}
             <span class="badge bg-light mb-3">
                 Reading time: {{ reading_time }}minute{{ reading_time > 1 ? 's' }}
             </span>

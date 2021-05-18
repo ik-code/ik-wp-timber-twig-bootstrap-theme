@@ -3,7 +3,12 @@
 {% block content %}
 <div class="row">
     <div class=" col-sm-4 col-lg-3 text-center">
-        <img class="img-fluid mb-3" src="{{ post.thumbnail.src('large') }}" alt="{{ post.title|e('html') }}" />
+        {% if post.thumbnail.src %}
+            <img class="img-fluid mb-3" src="{{ post.thumbnail.src('large') }}" alt="{{ post.title|e('html') }}" />
+            {% else %}
+            <img class="img-fluid mb-3" src="{{ Image( theme_options.defaul_user_image ).src('large') }}" alt="{{ post.title|e('html') }}" />
+            {% endif %}
+
 
     </div>  
     <div class="col-sm-8 col-lg-9">
@@ -33,7 +38,11 @@
     {% for person in people %}
         {% if person.id != post.id %}
         <div class="col-md-2 col-6 text-center mb-4">
-            <img class="img-fluid mb-3" src="{{ person.thumbnail.src('thumbnail') }}" alt="{{ person.title|e('html') }}" />
+            {% if person.thumbnail.src %}
+            <img class="img-fluid mb-3" src="{{ person.thumbnail.src }}" alt="{{ post.title|e('html') }}" />
+            {% else %}
+            <img class="img-fluid mb-3" src="{{ Image( theme_options.defaul_user_image ).src('large') }}" alt="{{ post.title|e('html') }}" />
+            {% endif %}
             <h6 class="text-center">
                 <a href="{{ person.link }}">{{ person.title|e('html')  }}</a>
             </h6>

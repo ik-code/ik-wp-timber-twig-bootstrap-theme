@@ -49,8 +49,12 @@
                 {% for person in promoted_people.posts({ posts_per_page: 3, orderby: 'rand' }) %}
                     <div class="col-sm-4 d-flex">
                         <div class="card bg-secondary mb-3  align-self-stretch" >
-                            <div class="card bg-success text-white border-light">
-                                <img src="{{ person.thumbnail.src('full')}}" alt="" class="card-img-top">
+                            <div class="card text-white border-light">
+                                {% if person.thumbnail.src %}
+                                <img class="img-fluid mb-3" src="{{ person.thumbnail.src }}" alt="{{ post.title|e('html') }}" />
+                                {% else %}
+                                <img class="img-fluid mb-3" src="{{ Image( theme_options.defaul_user_image ).src('large') }}" alt="{{ post.title|e('html') }}" />
+                                {% endif %}
                             </div>
                             <div class="card-body">
                               <h5 class="card-title">{{ person.title|e('html')  }}</h5>
