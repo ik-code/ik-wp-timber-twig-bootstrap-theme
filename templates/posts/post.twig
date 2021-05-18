@@ -28,12 +28,16 @@
 
         </div>
 
+        {% block advertisment %}{% endblock %}
+
         <div>
             <img src="{{ theme.link }}/images/news/{{ post.slug }}.jpg" alt="{{ post.title|e('html')  }}"
                 class="ms-sm-3 float-sm-end img-fluid" />
             <div class="">
                 {{ post.content }}
             </div>
+
+            {{ block('advertisment') }}
         </div>
 
     </div>
